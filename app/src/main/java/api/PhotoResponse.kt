@@ -1,6 +1,6 @@
 package api
 
-import com.bignerdranch.android.photogallery.GalleryItem
+import com.example.laba_7.GalleryItem
 import com.google.gson.annotations.SerializedName
 
 class PhotoResponse {

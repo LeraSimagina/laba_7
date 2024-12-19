@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
-import com.bignerdranch.android.photogallery.GalleryItem
+import com.example.laba_7.GalleryItem
 
 @Dao
 interface PhotoDao {

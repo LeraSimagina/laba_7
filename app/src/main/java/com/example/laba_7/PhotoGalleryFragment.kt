@@ -14,6 +14,7 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.core.content.ContextCompat
@@ -176,12 +177,13 @@ class PhotoGalleryFragment : Fragment() {
         }
     }
 
-    private class PhotoHolder(private val itemImageView: ImageView):
+    private class PhotoHolder(private val itemImageView: View):
         RecyclerView.ViewHolder(itemImageView), View.OnClickListener {
         lateinit var galleryItem: GalleryItem
         //lateinit var photoDetailViewModel: PhotoDetailViewModel
         //lateinit var photoGalleryFragment: PhotoGalleryFragment
-        val bindDrawable: (Drawable) -> Unit = itemImageView::setImageDrawable
+        val bindDrawable: (Drawable) -> Unit = itemImageView.findViewById<ImageView>(R.id.photo_drawable)::setImageDrawable
+        val titleText = itemImageView.findViewById<TextView>(R.id.photo_title)
 
         init {
             itemView.setOnClickListener(this)
@@ -217,7 +219,7 @@ class PhotoGalleryFragment : Fragment() {
                 R.layout.list_item_gallery,
                 parent,
                 false
-            ) as ImageView
+            ) as View
             return PhotoHolder(view)
         }
         override fun getItemCount(): Int = galleryItems.size
@@ -229,6 +231,7 @@ class PhotoGalleryFragment : Fragment() {
             ) ?: ColorDrawable()
             holder.bindDrawable(placeholder)
             holder.galleryItem = galleryItem
+            holder.titleText.text = galleryItem.title
             //holder.photoDetailViewModel = photoDetailViewModel
             //holder.photoGalleryFragment = this@PhotoGalleryFragment
 
